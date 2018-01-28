@@ -98,7 +98,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.exynos5 \
     Snap \
-    libstagefright_shim
+    libstagefright_shim \
+    libcamera_client_shim
 
 # DTB    
 PRODUCT_PACKAGES += \
