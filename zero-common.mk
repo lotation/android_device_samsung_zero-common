@@ -207,6 +207,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsxpa=1 \
     ro.ril.telephony.mqanelements=6 \
     ro.ril.gprsclass=10
+
+# Disable Scrolling Cache For Smoother Scrolling
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.scrollingcache=4
     
 # Ramdisk
 PRODUCT_PACKAGES += \
