@@ -120,7 +120,8 @@ PRODUCT_PACKAGES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-    gralloc.exynos5
+    gralloc.exynos5 \
+    hwcomposer.exynos5
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -177,7 +178,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio_hal.force_voice_config=wide \
     ro.nfc.sec_hal=true \
     wifi.interface=wlan0 \
-    debug.hwc.force_gpu=1 \
+    debug.hwc.force_gpu=0 \
+    debug.hwc.max_hw_overlays=1 \
+    debug.egl.hw=1 \
+    debug.sf.hw=1 \
+    persist.sys.ui.hw=true \
+    video.accelerate.hw=1 \
+    debug.egl.profiler=1 \
     ro.bq.gpu_to_cpu_unsupported=1
     
 # media build properties
