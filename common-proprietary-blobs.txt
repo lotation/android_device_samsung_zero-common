@@ -478,3 +478,7 @@ etc/wifi/nvram_net.txt_semco_b85_a1
 etc/wifi/nvram_net.txt_wisol
 etc/wifi/nvram_net.txt_wisol_a1
 etc/wifi/nvram_net.txt_wisol_b85_a1
+etc/wifi/cred.conf
+etc/wifi/p2p_supplicant_overlay.conf
+etc/wifi/wpa_supplicant.conf
+etc/wifi/wpa_supplicant_overlay.conf
