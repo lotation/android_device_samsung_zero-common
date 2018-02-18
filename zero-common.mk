@@ -122,7 +122,8 @@ PRODUCT_PACKAGES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-    gralloc.exynos5
+    gralloc.exynos5 \
+    hwcomposer.exynos5
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -182,6 +183,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.force_gpu=1 \
     ro.bq.gpu_to_cpu_unsupported=1
     
+# HWC
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwc.otf=1 \
+    debug.hwc.winupdate=1
+
 # media build properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.sf.omx-plugin=libffmpeg_omx.so,libsomxcore.so 
