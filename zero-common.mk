@@ -188,13 +188,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.otf=1 \
     debug.hwc.winupdate=1 \
-    debug.hwc.force_gpu=0 \
-    debug.hwc.max_hw_overlays=1 \
-    debug.egl.hw=1 \
-    debug.sf.hw=1 \
-    persist.sys.ui.hw=true \
-    video.accelerate.hw=1 \
-    debug.egl.profiler=1 
+    debug.hwc.force_gpu=0 
 
 # media build properties
 PRODUCT_PROPERTY_OVERRIDES += \
