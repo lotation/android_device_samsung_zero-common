@@ -180,8 +180,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio_hal.force_voice_config=wide \
     ro.nfc.sec_hal=true \
     wifi.interface=wlan0 \
-    debug.hwc.force_gpu=1 \
-    ro.bq.gpu_to_cpu_unsupported=1
+    ro.bq.gpu_to_cpu_unsupported=1 \
+    ro.sf.disable_triple_buffer=0 \
+    debug.sf.latch_unsignaled=1
     
 # HWC
 PRODUCT_PROPERTY_OVERRIDES += \
