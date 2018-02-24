@@ -188,7 +188,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.otf=1 \
     debug.hwc.winupdate=1 \
-    debug.hwc.force_gpu=0 
+    debug.hwc.force_gpu=0 \
+    debug.sf.enable_hwc_vds=1 \
+    persist.sys.ui.hw=true \
+    video.accelerate.hw=1 
 
 # media build properties
 PRODUCT_PROPERTY_OVERRIDES += \
