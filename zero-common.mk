@@ -179,7 +179,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.nfc.sec_hal=true \
     wifi.interface=wlan0 \
     debug.hwc.force_gpu=0 \
-    debug.hwc.max_hw_overlays=1 \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
     persist.sys.ui.hw=true \
