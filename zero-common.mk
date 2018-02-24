@@ -181,17 +181,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.nfc.sec_hal=true \
     wifi.interface=wlan0 \
     ro.bq.gpu_to_cpu_unsupported=1 \
-    ro.sf.disable_triple_buffer=0 \
-    debug.sf.latch_unsignaled=1
+    debug.sf.latch_unsignaled=1 \
+    ro.sf.disable_triple_buffer=0
     
 # HWC
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwc.otf=1 \
     debug.hwc.winupdate=1 \
     debug.hwc.force_gpu=0 \
-    debug.sf.enable_hwc_vds=1 \
+    debug.composition.type=gpu \
     persist.sys.ui.hw=true \
-    video.accelerate.hw=1 
+    video.accelerate.hw=1 \
+    debug.sf.enable_hwc_vds=1 \
+    debug.egl.hw=1 \
+    debug.sf.hw=1 \
+    debug.egl.profiler=1 
+    
+    
 
 # media build properties
 PRODUCT_PROPERTY_OVERRIDES += \
