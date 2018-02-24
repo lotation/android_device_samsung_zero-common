@@ -186,13 +186,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 # HWC
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwc.otf=1 \
-    debug.hwc.winupdate=1 \
     debug.hwc.force_gpu=0 \
-    debug.composition.type=gpu \
     persist.sys.ui.hw=true \
     video.accelerate.hw=1 \
-    debug.sf.enable_hwc_vds=1 \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
     debug.egl.profiler=1 
