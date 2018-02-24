@@ -184,8 +184,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.ui.hw=true \
     video.accelerate.hw=1 \
     debug.egl.profiler=1 \
-    ro.bq.gpu_to_cpu_unsupported=1
-    
+    ro.bq.gpu_to_cpu_unsupported=1 \
+    debug.sf.latch_unsignaled=1 \
+    ro.sf.disable_triple_buffer=0 \
+    debug.sf.enable_hwc_vds=1 \
+    debug.composition.type=gpu \
+    debug.hwc.otf=1 \
+    debug.hwc.winupdate=1 
+   
 # media build properties
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.sf.omx-plugin=libffmpeg_omx.so,libsomxcore.so 
