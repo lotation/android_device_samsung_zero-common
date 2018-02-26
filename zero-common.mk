@@ -135,10 +135,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.universal7420
 
-# Libstlport
-PRODUCT_PACKAGES += \
-    libstlport
-
 # MDNIE
 PRODUCT_PACKAGES += \
     AdvancedDisplay
@@ -250,4 +246,4 @@ $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos7420/exynos7420.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/zero-common/zero-common-vendor.mk)
+$(call inherit-product, vendor/samsung/zero-common/zero-common-vendor.mk)
