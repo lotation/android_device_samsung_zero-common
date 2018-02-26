@@ -123,10 +123,6 @@ PRODUCT_PACKAGES += \
     gralloc.exynos5 \
     hwcomposer.exynos5
 
-# OpenGL
-PRODUT_PACKAGES += \
-    libGLES_android
-
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \

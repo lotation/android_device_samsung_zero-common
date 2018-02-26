@@ -100,8 +100,9 @@ lib/libwrappergps.so
 
 # Graphics
 lib64/hw/gralloc.exynos5.so
-lib/egl/libGLES_android.so
 lib/hw/gralloc.exynos5.so
+vendor/lib64/egl/libGLES_mali.so
+vendor/lib/egl/libGLES_mali.so
 vendor/lib64/hw/vulkan.exynos5.so
 vendor/lib/hw/vulkan.exynos5.so
 vendor/lib64/libOpenCL.so
