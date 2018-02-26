@@ -65,7 +65,6 @@ lib64/libcamera_metadata.so
 lib64/libexynoscamera3.so
 lib64/libexynoscamera.so
 lib64/libfloatingfeature.so
-lib64/libhwjpeg.so
 lib64/libsdid.so
 lib64/libseccamera_jni.so
 lib64/libsecnativefeature.so
@@ -75,7 +74,6 @@ lib/libcamera_metadata.so
 lib/libexynoscamera3.so
 lib/libexynoscamera.so
 lib/libfloatingfeature.so
-lib/libhwjpeg.so
 lib/libseccameracore.so
 lib/libseccamera_jni.so
 lib/libsecnativefeature.so
@@ -101,19 +99,10 @@ lib64/libwrappergps.so
 lib/libwrappergps.so
 
 # Graphics
-lib64/egl/libGLES_android.so
 lib64/hw/gralloc.exynos5.so
-lib64/libexynosgscaler.so
-lib64/libexynosscaler.so
-lib64/libexynosv4l2.so
 lib/egl/libGLES_android.so
 lib/hw/gralloc.exynos5.so
-lib/libexynosgscaler.so
-lib/libexynosscaler.so
-lib/libexynosv4l2.so
-vendor/lib64/egl/libGLES_mali.so
 vendor/lib64/hw/vulkan.exynos5.so
-vendor/lib/egl/libGLES_mali.so
 vendor/lib/hw/vulkan.exynos5.so
 vendor/lib64/libOpenCL.so
 vendor/lib64/libOpenCv.so
@@ -143,12 +132,6 @@ vendor/firmware/setfile_6b2.bin
 vendor/firmware/setfile_imx240.bin
 vendor/lib/libLifevibes_lvverx.so
 vendor/lib/libLifevibes_lvvetx.so
-
-# Memory
-lib64/libcsc.so
-lib64/libion.so
-lib/libcsc.so
-lib/libion.so
 
 # Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
