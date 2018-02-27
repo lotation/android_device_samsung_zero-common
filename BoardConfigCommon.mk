@@ -65,6 +65,9 @@ BOARD_USES_SKIA_FIMGAPI := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# Camera
+BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_USES_VIRTUAL_DISPLAY := true
