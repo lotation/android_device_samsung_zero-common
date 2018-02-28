@@ -81,6 +81,10 @@ BOARD_USES_DT := true
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 BOARD_HARDWARE_CLASS += device/samsung/zero-common/cmhw
 
+# HWComposer
+BOARD_USES_VPP := true
+# BOARD_USES_VPP_V2 := true // 8890 only
+
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
