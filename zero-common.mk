@@ -190,6 +190,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.sf.omx-plugin=libffmpeg_omx.so,libsomxcore.so 
 
+# USB
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.adb.secure=0
 
 # Radio
 PRODUCT_PACKAGES += \
