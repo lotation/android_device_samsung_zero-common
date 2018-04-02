@@ -73,3 +73,9 @@ inline void property_override(const char prop[], const string value)
     else
         __system_property_add(prop, strlen(prop), c_value, strlen(c_value));
 }
+
+void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[])
+{
+    property_override(system_prop, c_value);
+    property_override(vendor_prop, c_value);
+}
