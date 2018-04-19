@@ -122,6 +122,7 @@ BOARD_HDMI_INCAPABLE := true
 BOARD_USES_GSC_VIDEO := true
 
 # Init
+TARGET_INIT_VENDOR_LIB := libinit_sec
 TARGET_UNIFIED_DEVICE := true
 
 # Kernel
