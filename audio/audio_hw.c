@@ -17,8 +17,8 @@
  */
 
 #define LOG_TAG "audio_hw_primary"
-/*#define LOG_NDEBUG 0*/
-/*#define VERY_VERY_VERBOSE_LOGGING*/
+#define LOG_NDEBUG 0
+#define VERY_VERY_VERBOSE_LOGGING
 #ifdef VERY_VERY_VERBOSE_LOGGING
 #define ALOGVV ALOGV
 #else
@@ -517,6 +517,9 @@ static int mixer_init(struct audio_device *adev)
     struct mixer *mixer;
     struct audio_route *audio_route;
     char mixer_path[PATH_MAX];
+#ifdef MIXER_PATHS_FILE_ROUTINE
+    char dynamic_mixer_path[PATH_MAX];
+#endif
     struct mixer_card *mixer_card;
     int ret = 0;
 
@@ -539,12 +542,31 @@ static int mixer_init(struct audio_device *adev)
                 }
             } while (mixer == NULL);
 
-            sprintf(mixer_path, "/system/etc/mixer_paths_%d.xml", card);
+#ifdef MIXER_PATHS_FILE_ROUTINE
+            if (MIXER_PATHS_FILE_ROUTINE(dynamic_mixer_path)) {
+                sprintf(mixer_path, dynamic_mixer_path, card);
+                if (access(mixer_path, F_OK) == -1) {
+                    ALOGE("%s: Failed to open mixer paths from %s, retrying with default locations",
+                           __func__, mixer_path);
+					goto mixer_paths_def;
+                }
+                goto mixer_paths_done;
+            }
+#endif
+
+mixer_paths_def:
+            sprintf(mixer_path, "/vendor/etc/mixer_paths_%d.xml", card);
             if (access(mixer_path, F_OK) == -1) {
-                ALOGE("%s: Failed to load mixer paths from %s, your system is going to crash",
+                ALOGW("%s: Failed to open mixer paths from %s, retrying with legacy location",
                       __func__, mixer_path);
+                sprintf(mixer_path, "/system/etc/mixer_paths_%d.xml", card);
+                if (access(mixer_path, F_OK) == -1) {
+                    ALOGE("%s: Failed to load a mixer paths configuration, your system will crash",
+                          __func__);
+                }
             }
 
+mixer_paths_done:
             audio_route = audio_route_init(card, mixer_path);
             if (!audio_route) {
                 ALOGE("%s: Failed to init audio route controls for card %d, aborting.",
@@ -757,8 +779,8 @@ static snd_device_t get_input_snd_device(struct audio_device *adev, audio_device
     channel_mask = (active_input == NULL) ?
                                 AUDIO_CHANNEL_IN_MONO : active_input->main_channels;
 
-    ALOGV("%s: enter: out_device(%#x) in_device(%#x)",
-          __func__, out_device, in_device);
+    ALOGV("%s: enter: out_device(%#x) in_device(%#x ->%#x)",
+          __func__, out_device, active_input->devices, in_device);
     if (mode == AUDIO_MODE_IN_CALL) {
         if (out_device == AUDIO_DEVICE_NONE) {
             ALOGE("%s: No output device set for voice call", __func__);
@@ -919,8 +941,7 @@ static int64_t render_latency(audio_usecase_t usecase)
 
 static int enable_snd_device(struct audio_device *adev,
                              struct audio_usecase *uc_info,
-                             snd_device_t snd_device,
-                             bool update_mixer)
+                             snd_device_t snd_device)
 {
     struct mixer_card *mixer_card;
     struct listnode *node;
@@ -935,8 +956,8 @@ static int enable_snd_device(struct audio_device *adev,
 
     if (snd_device == SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES) {
         ALOGV("Request to enable combo device: enable individual devices\n");
-        enable_snd_device(adev, uc_info, SND_DEVICE_OUT_SPEAKER, update_mixer);
-        enable_snd_device(adev, uc_info, SND_DEVICE_OUT_HEADPHONES, update_mixer);
+        enable_snd_device(adev, uc_info, SND_DEVICE_OUT_SPEAKER);
+        enable_snd_device(adev, uc_info, SND_DEVICE_OUT_HEADPHONES);
         return 0;
     }
     adev->snd_dev_ref_cnt[snd_device]++;
@@ -964,15 +985,11 @@ static int enable_snd_device(struct audio_device *adev,
                 usleep(DSP_POWEROFF_DELAY - elapsed_usec);
             }
         }
-        update_mixer = true;
 #endif /* DSP_POWEROFF_DELAY */
 
         amplifier_enable_devices(snd_device, true);
 
-        audio_route_apply_path(mixer_card->audio_route, snd_device_name);
-        if (update_mixer) {
-            audio_route_update_mixer(mixer_card->audio_route);
-        }
+        audio_route_apply_and_update_path(mixer_card->audio_route, snd_device_name);
     }
 
     return 0;
@@ -980,20 +997,21 @@ static int enable_snd_device(struct audio_device *adev,
 
 int disable_snd_device(struct audio_device *adev,
                               struct audio_usecase *uc_info,
-                              snd_device_t snd_device,
-                              bool update_mixer)
+                              snd_device_t snd_device)
 {
     struct mixer_card *mixer_card;
     struct listnode *node;
+    struct audio_usecase *out_uc_info = get_usecase_from_type(adev, PCM_PLAYBACK);
     const char *snd_device_name = get_snd_device_name(snd_device);
+    const char *out_snd_device_name = NULL;
 
     if (snd_device_name == NULL)
         return -EINVAL;
 
     if (snd_device == SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES) {
         ALOGV("Request to disable combo device: disable individual devices\n");
-        disable_snd_device(adev, uc_info, SND_DEVICE_OUT_SPEAKER, update_mixer);
-        disable_snd_device(adev, uc_info, SND_DEVICE_OUT_HEADPHONES, update_mixer);
+        disable_snd_device(adev, uc_info, SND_DEVICE_OUT_SPEAKER);
+        disable_snd_device(adev, uc_info, SND_DEVICE_OUT_HEADPHONES);
         return 0;
     }
 
@@ -1007,12 +1025,15 @@ int disable_snd_device(struct audio_device *adev,
               snd_device, snd_device_name);
         list_for_each(node, &uc_info->mixer_list) {
             mixer_card = node_to_item(node, struct mixer_card, uc_list_node[uc_info->id]);
-#ifdef DSP_POWEROFF_DELAY
-            update_mixer = true;
-#endif /* DSP_POWEROFF_DELAY */
-            audio_route_reset_path(mixer_card->audio_route, snd_device_name);
-            if (update_mixer) {
-                audio_route_update_mixer(mixer_card->audio_route);
+            audio_route_reset_and_update_path(mixer_card->audio_route, snd_device_name);
+            if (snd_device > SND_DEVICE_IN_BEGIN && out_uc_info != NULL) {
+                /*
+                 * Cycle the rx device to eliminate routing conflicts.
+                 * This prevents issues when an input route shares mixer controls with an output
+                 * route.
+                 */
+                out_snd_device_name = get_snd_device_name(out_uc_info->out_snd_device);
+                audio_route_apply_and_update_path(mixer_card->audio_route, out_snd_device_name);
             }
 
             amplifier_enable_devices(snd_device, false);
@@ -1031,10 +1052,8 @@ static int select_devices(struct audio_device *adev,
     snd_device_t in_snd_device = SND_DEVICE_NONE;
     struct audio_usecase *usecase = NULL;
     struct audio_usecase *vc_usecase = NULL;
-    struct listnode *node;
     struct stream_in *active_input = NULL;
     struct stream_out *active_out;
-    struct mixer_card *mixer_card;
 
     ALOGV("%s: usecase(%d)", __func__, uc_id);
 
@@ -1114,11 +1133,11 @@ static int select_devices(struct audio_device *adev,
 
     /* Disable current sound devices */
     if (usecase->out_snd_device != SND_DEVICE_NONE) {
-        disable_snd_device(adev, usecase, usecase->out_snd_device, false);
+        disable_snd_device(adev, usecase, usecase->out_snd_device);
     }
 
     if (usecase->in_snd_device != SND_DEVICE_NONE) {
-        disable_snd_device(adev, usecase, usecase->in_snd_device, false);
+        disable_snd_device(adev, usecase, usecase->in_snd_device);
     }
 
     /* Enable new sound devices */
@@ -1128,16 +1147,11 @@ static int select_devices(struct audio_device *adev,
             set_voice_session_audio_path(adev->voice.session);
         }
 
-        enable_snd_device(adev, usecase, out_snd_device, false);
+        enable_snd_device(adev, usecase, out_snd_device);
     }
 
     if (in_snd_device != SND_DEVICE_NONE) {
-        enable_snd_device(adev, usecase, in_snd_device, false);
-    }
-
-    list_for_each(node, &usecase->mixer_list) {
-         mixer_card = node_to_item(node, struct mixer_card, uc_list_node[usecase->id]);
-         audio_route_update_mixer(mixer_card->audio_route);
+        enable_snd_device(adev, usecase, in_snd_device);
     }
 
     usecase->in_snd_device = in_snd_device;
@@ -2154,7 +2168,7 @@ static int stop_input_stream(struct stream_in *in)
     }
 
     /* Disable the tx device */
-    disable_snd_device(adev, uc_info, uc_info->in_snd_device, true);
+    disable_snd_device(adev, uc_info, uc_info->in_snd_device);
 
     list_remove(&uc_info->adev_list_node);
     free(uc_info);
@@ -2517,7 +2531,7 @@ int disable_output_path_l(struct stream_out *out)
              __func__, out->usecase);
         return -EINVAL;
     }
-    disable_snd_device(adev, uc_info, uc_info->out_snd_device, true);
+    disable_snd_device(adev, uc_info, uc_info->out_snd_device);
     uc_release_pcm_devices(uc_info);
     list_remove(&uc_info->adev_list_node);
     free(uc_info);
@@ -2630,8 +2644,8 @@ int stop_voice_call(struct audio_device *adev)
         return -EINVAL;
     }
 
-    disable_snd_device(adev, uc_info, uc_info->out_snd_device, false);
-    disable_snd_device(adev, uc_info, uc_info->in_snd_device, true);
+    disable_snd_device(adev, uc_info, uc_info->out_snd_device);
+    disable_snd_device(adev, uc_info, uc_info->in_snd_device);
 
     list_remove(&uc_info->adev_list_node);
     free(uc_info);
@@ -2970,11 +2984,7 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     }
 
     str_parms_destroy(parms);
-
-    if (ret > 0)
-        ret = 0;
-    ALOGV("%s: exit: code(%d)", __func__, ret);
-    return ret;
+    return 0;
 }
 
 static char* out_get_parameters(const struct audio_stream *stream, const char *keys)
@@ -3186,11 +3196,11 @@ false_alarm:
                 }
                 frames_rq = bytes / frame_size;
                 frames_wr = pcm_device->res_byte_count / frame_size;
-                ALOGVV("%s: resampler request frames = %d frame_size = %d",
+                ALOGVV("%s: resampler request frames = %zd frame_size = %zd",
                     __func__, frames_rq, frame_size);
                 pcm_device->resampler->resample_from_input(pcm_device->resampler,
                     (int16_t *)buffer, &frames_rq, (int16_t *)pcm_device->res_buffer, &frames_wr);
-                ALOGVV("%s: resampler output frames_= %d", __func__, frames_wr);
+                ALOGVV("%s: resampler output frames_= %zd", __func__, frames_wr);
             }
             if (pcm_device->pcm) {
 #ifdef PREPROCESSING_ENABLED
@@ -3203,7 +3213,7 @@ false_alarm:
                     out->echo_reference->write(out->echo_reference, &b);
                  }
 #endif
-                ALOGVV("%s: writing buffer (%d bytes) to pcm device", __func__, bytes);
+                ALOGVV("%s: writing buffer (%zd bytes) to pcm device", __func__, bytes);
                 if (pcm_device->resampler && pcm_device->res_buffer)
                     pcm_device->status =
                         pcm_write(pcm_device->pcm, (void *)pcm_device->res_buffer,
@@ -3306,7 +3316,7 @@ static int out_get_presentation_position(const struct audio_stream_out *stream,
                                    uint64_t *frames, struct timespec *timestamp)
 {
     struct stream_out *out = (struct stream_out *)stream;
-    int ret = -1;
+    int ret = -EINVAL;
 
     lock_output_stream(out);
 
@@ -3345,7 +3355,6 @@ static int out_get_presentation_position(const struct audio_stream_out *stream,
                             ret = 0;
                             goto done;
                         }
-                        ret = -1;
                     }
                 }
             }
@@ -3620,13 +3629,9 @@ static int in_set_parameters(struct audio_stream *stream, const char *kvpairs)
     pthread_mutex_unlock(&adev->lock);
     pthread_mutex_unlock(&in->lock);
     pthread_mutex_unlock(&adev->lock_inputs);
+
     str_parms_destroy(parms);
-
-    if (ret > 0)
-        ret = 0;
-
-    ALOGV("%s: exit: status(%d)", __func__, ret);
-    return ret;
+    return 0;
 }
 
 static char* in_get_parameters(const struct audio_stream *stream,
@@ -4196,12 +4201,7 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
 #endif /* SWAP_SPEAKER_ON_SCREEN_ROTATION */
 
     str_parms_destroy(parms);
-
-    if (ret > 0)
-        ret = 0;
-
-    ALOGV("%s: exit with code(%d)", __func__, ret);
-    return ret;
+    return 0;
 }
 
 static char* adev_get_parameters(const struct audio_hw_device *dev,

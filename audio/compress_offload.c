@@ -16,8 +16,8 @@
  */
 
 #define LOG_TAG "audio_hw_primary"
-/*#define LOG_NDEBUG 0*/
-/*#define VERY_VERY_VERBOSE_LOGGING*/
+#define LOG_NDEBUG 0
+#define VERY_VERY_VERBOSE_LOGGING
 #ifdef VERY_VERY_VERBOSE_LOGGING
 #define ALOGVV ALOGV
 #else
@@ -51,8 +51,7 @@ void lock_input_stream(struct stream_in *in);
 void lock_output_stream(struct stream_out *out);
 int disable_snd_device(struct audio_device *adev,
                               struct audio_usecase *uc_info,
-                              snd_device_t snd_device,
-                              bool update_mixer);
+                              snd_device_t snd_device);
 int enable_output_path_l(struct stream_out *out);
 int disable_output_path_l(struct stream_out *out);
 
@@ -250,7 +249,7 @@ int out_set_offload_parameters(struct audio_device *adev, struct audio_usecase *
     if (uc_info != NULL && uc_info->out_snd_device == SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES) {
         ALOGV("Out_set_param: spk+headset enabled\n");
         uc_info->out_snd_device = SND_DEVICE_OUT_HEADPHONES;
-        disable_snd_device(adev, uc_info, SND_DEVICE_OUT_SPEAKER, true);
+        disable_snd_device(adev, uc_info, SND_DEVICE_OUT_SPEAKER);
     }
 
     return ret;
@@ -263,7 +262,7 @@ ssize_t out_write_offload(struct audio_stream_out *stream, const void *buffer,
     struct audio_device *adev = out->dev;
     ssize_t ret = 0;
 
-    ALOGVV("%s: writing buffer (%d bytes) to compress device", __func__, bytes);
+    ALOGVV("%s: writing buffer (%zu bytes) to compress device", __func__, bytes);
 
     if (out->offload_state == OFFLOAD_STATE_PAUSED_FLUSHED) {
         ALOGV("start offload write from pause state");
@@ -282,7 +281,7 @@ ssize_t out_write_offload(struct audio_stream_out *stream, const void *buffer,
     }
 
     ret = compress_write(out->compr, buffer, bytes);
-    ALOGVV("%s: writing buffer (%d bytes) to compress device returned %d", __func__, bytes, ret);
+    ALOGVV("%s: writing buffer (%zu bytes) to compress device returned %zu", __func__, bytes, ret);
     if (ret >= 0 && ret < (ssize_t)bytes) {
         send_offload_cmd_l(out, OFFLOAD_CMD_WAIT_FOR_BUFFER);
     }

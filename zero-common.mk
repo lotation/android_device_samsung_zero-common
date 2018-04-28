@@ -80,7 +80,9 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/mixer_paths_0.xml:system/etc/mixer_paths_0.xml \
+    $(LOCAL_PATH)/configs/mixer_paths_0-audience.xml:system/etc/mixer_paths_0-audience.xml
 
 PRODUCT_PACKAGES += \
     audio.primary.universal7420 \
@@ -99,6 +101,10 @@ PRODUCT_PACKAGES += \
     camera.exynos5 \
     Snap \
     libstagefright_shim
+
+# cpboot daemon
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 
 # DTB    
 PRODUCT_PACKAGES += \
@@ -235,7 +241,8 @@ PRODUCT_PACKAGES += \
     init.samsungexynos7420.rc \
     init.samsungexynos7420.usb.rc \
     init.wifi.rc \
-    ueventd.samsungexynos7420.rc
+    ueventd.samsungexynos7420.rc \
+    init.carrier.rc
 
 # Samsung
 PRODUCT_PACKAGES += \

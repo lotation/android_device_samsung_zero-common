@@ -389,7 +389,7 @@ struct voice_data {
     float volume;
     bool  bluetooth_nrec;
     bool  bluetooth_wb;
-    struct voice_session *session;
+    void  *session;
 };
 
 struct audio_device {

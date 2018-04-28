@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2017 TeamNexus
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +15,10 @@
  * limitations under the License.
  */
 
-#include <telephony/ril.h>
+#ifndef SAMSUNG_AUDIO_COMMON_H
+#define SAMSUNG_AUDIO_COMMON_H
 
-#ifndef SAMSUNG_AUDIO_H
-#define SAMSUNG_AUDIO_H
+#include <zero-helpers.h>
 
 /*
  * Sound card specific defines.
@@ -33,8 +34,8 @@
 #define SOUND_CARD 0
 
 /* Playback */
-#define SOUND_DEEP_BUFFER_DEVICE 3
-#define SOUND_PLAYBACK_DEVICE 4
+#define SOUND_DEEP_BUFFER_DEVICE 8
+#define SOUND_PLAYBACK_DEVICE 6
 #define SOUND_PLAYBACK_SCO_DEVICE 2
 
 /* Capture */
@@ -53,6 +54,9 @@
 #define RIL_UNSOL_SNDMGR_WB_AMR_REPORT 0
 #endif
 #endif
+
+/* DSP offload */
+#define SOUND_COMPRESS_OFFLOAD_DEVICE 11
 
 /* Unusupported
 #define SOUND_CAPTURE_LOOPBACK_AEC_DEVICE 1
@@ -73,10 +77,10 @@
 #define SUPPORTS_IRQ_AFFINITY 0
 
 /*
- * ril_set_call_clock_sync() can cause problems with changing
- * call-volume and muting the mic in a call.
+ * ril_set_call_clock_sync() may cause unknown problems with the call-mic.
+ * Uncomment this to disable the support for it.
  */
-// #define DISABLE_CALL_CLOCK_SYNC
+#define DISABLE_CALL_CLOCK_SYNC
 
 /*
  * The Wolfson/Cirruslogic chips need to shutdown the DAPM route completely
@@ -90,36 +94,33 @@
 /* #define DSP_POWEROFF_DELAY 0 */
 
 /*
- * Some device variants (often T-Mobile) have a separate voice processing IC
- * (Audience EarSmart xxx).
- * This hooks into the voice call session and enables, configures and disables
- * this extra firmware so RX/TX streams can be routed by the driver.
+ * Runtime audience support detection
  */
-/* #define AUDIENCE_EARSMART_IC */
+#define AUDIENCE_SUPPORTED  zero_audio_supports_audience
+__maybe_unused
+static bool zero_audio_supports_audience() {
+	enum zero_model model = zero_model_read();
+	switch (model) {
+		case TMOBILE:
+		case CANADA:
+			return true;
+		default:
+			return false;
+	}
+}
 
 /*
  * Runtime mixer paths file selection routine
- *
- * Example:
- *
- *     static bool device_mixer_paths_file_routine(char *path)
- *
- *     @argument  path    sprintf-input used instead of default one
- *
- *     @returns   true if a custom path was found, false if the default one
- *                should be used
  */
-// #define MIXER_PATHS_FILE_ROUTINE
+#define MIXER_PATHS_FILE_ROUTINE  zero_audio_select_mixer_paths
+__maybe_unused
+static bool zero_audio_select_mixer_paths(char *path) {
+	if (AUDIENCE_SUPPORTED())
+		strcpy(path, "/vendor/etc/mixer_paths_%d-audience.xml");
+	else
+		strcpy(path, "/vendor/etc/mixer_paths_%d.xml");
 
-/*
- * Runtime audience support detection
- *
- * Example:
- *
- *     static bool device_audio_supports_audience()
- *
- *     @returns   true if audience-support should be enabled, false otherwise
- */
-// #define AUDIENCE_SUPPORTED
+	return true;
+}
 
-#endif // SAMSUNG_AUDIO_H
+#endif // SAMSUNG_AUDIO_COMMON_H
