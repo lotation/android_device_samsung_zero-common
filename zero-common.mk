@@ -111,8 +111,8 @@ PRODUCT_PACKAGES += \
 	dtbhtoolExynos
 
 # Doze
-PRODUCT_PACKAGES += \
-    ZeroDoze
+# PRODUCT_PACKAGES += \
+#    ZeroDoze
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
