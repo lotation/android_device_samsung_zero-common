@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.lineageos.settings.doze"
+    package="org.cynogenmod.settings.doze"
     android:versionCode="1"
     android:versionName="1.0"
     android:sharedUserId="android.uid.system">
@@ -18,14 +18,14 @@
         android:label="ZeroDoze"
         android:persistent="true">
 
-        <receiver android:name="org.lineageos.settings.doze.BootCompletedReceiver">
+        <receiver android:name="org.samsung.settings.doze.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
-        <service android:name="org.lineageos.settings.doze.DozeService"
+        <service android:name="org.samsung.settings.doze.DozeService"
                  android:permission="ZeroDozeService">
         </service>
 
@@ -38,7 +38,7 @@
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.homepage" />
+                android:value="com.android.settings.category.device" />
             <meta-data
                 android:name="com.android.settings.icon"
                 android:resource="@drawable/ic_settings_doze" />

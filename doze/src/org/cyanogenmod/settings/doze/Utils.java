@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.doze;
+package org.cyanogenmod.settings.doze;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
