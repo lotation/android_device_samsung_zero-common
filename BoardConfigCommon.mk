@@ -113,6 +113,9 @@ BOARD_USES_VPP := true
 BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a53
 BOARD_OVERRIDE_RS_CPU_VARIANT_64 := cortex-a57
 
+# Releasetools - for resizing system filesystem
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/zero-common/releasetools
+
 # HDMI
 BOARD_HDMI_INCAPABLE := true
 BOARD_USES_GSC_VIDEO := true
