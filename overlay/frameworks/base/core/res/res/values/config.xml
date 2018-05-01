@@ -366,4 +366,7 @@ Add a comment to this line
    <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
          in hardware. -->
     <bool name="config_setColorTransformAccelerated">true</bool>
+
+    <!-- Enable NightLight -->
+   <bool name="config_nightDisplayAvailable">true</bool>  
 </resources>
