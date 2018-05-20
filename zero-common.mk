@@ -145,11 +145,11 @@ PRODUCT_PACKAGES += \
 
 # Skeletons
 PRODUCT_PACKAGES += \
-	android.hidl.base@1.0
+    android.hidl.base@1.0
 
 # GNSS
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl \
+    android.hardware.gnss@1.0-impl.zero \
 	android.hardware.gnss@1.0-service
 
 # GPS
