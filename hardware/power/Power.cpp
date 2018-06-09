@@ -50,7 +50,7 @@ Power::Power()
 	mVariant = SecDeviceVariant::UNKNOWN;
 	mTouchControlPath = "";
 	mTouchkeysEnabled = true;
-	mIsDT2WEnabled = false;
+	// mIsDT2WEnabled = false;
 
 	//
 	// reading, asserting
@@ -216,23 +216,23 @@ Return<void> Power::powerHint(PowerHint hint, int32_t data)  {
 	return Void();
 }
 
-Return<void> Power::setFeature(Feature feature, bool activate)  {
-	ALOGV("%s: enter; feature=%d, activate=%d", __func__, feature, activate ? 1 : 0);
-	power_lock();
-
-	switch_uint32_t (feature)
-	{
-		case_uint32_t (Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE):
-		{
-			mIsDT2WEnabled = activate;
-			setDT2WState();
-			break;
-		}
-	}
-
-	ALOGV("%s: exit;", __func__);
-	return Void();
-}
+// Return<void> Power::setFeature(Feature feature, bool activate)  {
+//	ALOGV("%s: enter; feature=%d, activate=%d", __func__, feature, activate ? 1 : 0);
+//	power_lock();
+//
+//	switch_uint32_t (feature)
+//	{
+//		case_uint32_t (Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE):
+//		{
+//			mIsDT2WEnabled = activate;
+//			setDT2WState();
+//			break;
+//		}
+//	}
+//
+//	ALOGV("%s: exit;", __func__);
+//	return Void();
+// }
 
 Return<void> Power::getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb)  {
 	ALOGV("%s: enter;", __func__);
@@ -258,11 +258,11 @@ Return<int32_t> Power::getFeature(LineageFeature feature)  {
 			return static_cast<int>(SecPowerProfiles::MAX_PROFILES);
 		}
 
-		case_uint32_t (Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE):
-		{
-			return (Utils::isFile(POWER_DT2W_ENABLED) && 
-			    Utils::canWrite(POWER_DT2W_ENABLED)) ? 1 : 0;
-		}
+		// case_uint32_t (Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE):
+		// {
+		//	return (Utils::isFile(POWER_DT2W_ENABLED) && 
+		//	    Utils::canWrite(POWER_DT2W_ENABLED)) ? 1 : 0;
+		// }
 	}
 
 	ALOGV("%s: exit;", __func__);
@@ -511,13 +511,13 @@ void Power::setInputState(bool enabled) {
 			DEBUG_TIMING(touchkeys_brightness, Utils::write(POWER_TOUCHKEYS_BRIGHTNESS, 0));
 		}
 
-		// only disable touchscreen if we aren't using DT2W
-		if (!mTouchControlPath.empty() && !mIsDT2WEnabled) {
+		// Disable touchscreen
+		if (!mTouchControlPath.empty()) {
 			DEBUG_TIMING(touchscreen, Utils::write(mTouchControlPath, false));
 		}
 	}
 
-	DEBUG_TIMING(dt2w, setDT2WState());
+//	DEBUG_TIMING(dt2w, setDT2WState());
 
 	auto end = Utils::getTime();
 	auto diff = end - begin;
@@ -525,13 +525,13 @@ void Power::setInputState(bool enabled) {
 	ALOGV("%s: exit; took %lldms", __func__, diff.count());
 }
 
-void Power::setDT2WState() {
-	if (mIsDT2WEnabled) {
-		Utils::write(POWER_DT2W_ENABLED, true);
-	} else {
-		Utils::write(POWER_DT2W_ENABLED, false);
-	}
-}
+// void Power::setDT2WState() {
+//	if (mIsDT2WEnabled) {
+//		Utils::write(POWER_DT2W_ENABLED, true);
+//	} else {
+//		Utils::write(POWER_DT2W_ENABLED, false);
+//	}
+// }
 
 bool Power::isModuleEnabled(string module) {
 	return (GetProperty("sys.power." + module, "true") == "true");
