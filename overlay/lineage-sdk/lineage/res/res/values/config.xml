@@ -69,4 +69,8 @@
     <!-- Default value for proximity check on screen wake
      NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)-->
     <bool name="config_proximityCheckOnWake">true</bool>
+
+    <!-- Indicate whether encryption causes significant performances loss.
+         This MUST NOT be set to true on devices produced in 2016 or later -->
+    <bool name="config_trustLegacyEncryption">true</bool>
 </resources>
