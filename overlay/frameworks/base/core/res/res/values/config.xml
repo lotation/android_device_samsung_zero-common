@@ -359,4 +359,11 @@ Add a comment to this line
 
    <!-- Whether device supports double tap to wake -->
    <bool name="config_supportDoubleTapWake">true</bool>
+
+    <!-- Allow automatic adjusting of the screen brightness while dozing in low power state. -->
+    <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
+
+    <!-- If we allow automatic adjustment of screen brightness while dozing, how many times we want
+         to reduce it to preserve the battery. Value of 100% means no scaling. -->
+    <fraction name="config_screenAutoBrightnessDozeScaleFactor">50%</fraction>
 </resources>
