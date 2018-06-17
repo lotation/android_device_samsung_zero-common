@@ -143,7 +143,7 @@ TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 DEVICE_MANIFEST_FILE += device/samsung/zero-common/manifest.xml
 
 # NFC
-BOARD_NFC_HAL_SUFFIX := universal7420
+BOARD_NFC_HAL_SUFFIX := universal7420.unused
 
 # Samsung LSI OpenMAX
 BOARD_USE_VP8ENC_SUPPORT := true
