@@ -87,6 +87,17 @@ debug.hwc.winupdate=1
 debug.hwc.max_hw_overlays=6
 
 #
+# Logging Suppression
+#
+log.tag.bauth_FPBAuthSensorControl=S
+log.tag.bauth_FPBAuthServiceStorage=S
+log.tag.bauth_FPBAuthService=S
+log.tag.BrcmNfcJni=S
+log.tag.BrcmNfcNfa=S
+log.tag.TLC_BAUTH=S
+log.tag.tlc_communication=S
+
+#
 # Graphics
 #
 
