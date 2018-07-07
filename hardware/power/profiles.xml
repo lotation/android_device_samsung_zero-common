@@ -281,7 +281,7 @@
              <enabled>true</enabled>
 			 <core1>true</core1>
 			 <core2>true</core2>
-		     <core3>false</core3>
+		     <core3>true</core3>
 			 <core4>false</core4>
             </cores>
            </atlas>
@@ -293,7 +293,7 @@
 			</dvfs>
 			<highspeed>
 				<freq>420</freq>
-				<load>90</load>
+				<load>95</load>
 			</highspeed>
 		</gpu>
             
@@ -304,9 +304,25 @@
 	-->
 	<balanced extends="bias_power_save">
 		<enabled>true</enabled>
+        <cpu>
+           <atlas>
+            <cores>
+             <enabled>true</enabled>
+			 <core1>true</core1>
+			 <core2>true</core2>
+		     <core3>true</core3>
+			 <core4>true</core4>
+            </cores>
+           </atlas>
+         </cpu>
 		<gpu>
+            <dvfs>
+				<freq_min>160</freq_min>
+				<freq_max>700</freq_max>
+			</dvfs>
 			<highspeed>
-				<freq>700</freq>
+				<freq>544</freq>
+                <load>89</load>
 			</highspeed>
 		</gpu>
 	</balanced>
@@ -330,7 +346,8 @@
 		</hmp>
 		<gpu>
 			<dvfs>
-				<freq_min>420</freq_min>
+				<freq_min>266</freq_min>
+                <freq_max>772</freq_max>
 			</dvfs>
 			<highspeed>
 				<freq>700</freq>
