@@ -119,4 +119,5 @@ PRODUCT_COPY_FILES += \
 	$(SYNAPSE_PATH)/quintz/doze_motion_inactive_to:$(SYNAPSE_TARGET)/quintz/doze_motion_inactive_to \
 	$(SYNAPSE_PATH)/quintz/doze_profile:$(SYNAPSE_TARGET)/quintz/doze_profile \
 	$(SYNAPSE_PATH)/quintz/doze_sensing_to:$(SYNAPSE_TARGET)/quintz/doze_sensing_to \
+    $(SYNAPSE_PATH)/quintz/xpad:$(SYNAPSE_TARGET)/quintz/xpad \
 	$(SYNAPSE_PATH)/quintz/doze_sms_temp_app_whitelist_duration:$(SYNAPSE_TARGET)/quintz/doze_sms_temp_app_whitelist_duration
