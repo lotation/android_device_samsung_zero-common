@@ -43,6 +43,7 @@ PRODUCT_COPY_FILES += \
 	$(SYNAPSE_PATH)/config.json.generate.reboot:$(SYNAPSE_TARGET)/config.json.generate.reboot \
 	$(SYNAPSE_PATH)/config.json.generate.storage:$(SYNAPSE_TARGET)/config.json.generate.storage \
 	$(SYNAPSE_PATH)/config.json.generate.vm:$(SYNAPSE_TARGET)/config.json.generate.vm \
+    $(SYNAPSE_PATH)/config.json.generate.dt2w:$(SYNAPSE_TARGET)/config.json.generate.dt2w \
 	$(SYNAPSE_PATH)/actions/bit:$(SYNAPSE_TARGET)/actions/bit \
 	$(SYNAPSE_PATH)/actions/boolean:$(SYNAPSE_TARGET)/actions/boolean \
 	$(SYNAPSE_PATH)/actions/bracket-option:$(SYNAPSE_TARGET)/actions/bracket-option \
