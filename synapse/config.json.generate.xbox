@@ -1,0 +1,25 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:XBOX-GAMEPAD,
+    elements:[
+	{ SPane:{
+		title:"Xbox controller",
+		description:"Enable or disable Xbox controller support"
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+	{ SOptionList:{
+		title:"XPAD",
+		default:$(echo "$(/res/synapse/actions/modules xpad)"),
+		action:"modules xpad",
+		values:[Disabled, Enabled,]
+	}},
+	{ SSpacer:{
+		height:1
+	}},
+    ]
+}
+CTAG

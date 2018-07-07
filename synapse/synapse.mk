@@ -44,6 +44,7 @@ PRODUCT_COPY_FILES += \
 	$(SYNAPSE_PATH)/config.json.generate.storage:$(SYNAPSE_TARGET)/config.json.generate.storage \
 	$(SYNAPSE_PATH)/config.json.generate.vm:$(SYNAPSE_TARGET)/config.json.generate.vm \
     $(SYNAPSE_PATH)/config.json.generate.dt2w:$(SYNAPSE_TARGET)/config.json.generate.dt2w \
+    $(SYNAPSE_PATH)/config.json.generate.xbox:$(SYNAPSE_TARGET)/config.json.generate.xbox \
 	$(SYNAPSE_PATH)/actions/bit:$(SYNAPSE_TARGET)/actions/bit \
 	$(SYNAPSE_PATH)/actions/boolean:$(SYNAPSE_TARGET)/actions/boolean \
 	$(SYNAPSE_PATH)/actions/bracket-option:$(SYNAPSE_TARGET)/actions/bracket-option \
@@ -69,6 +70,7 @@ PRODUCT_COPY_FILES += \
 	$(SYNAPSE_PATH)/actions/live:$(SYNAPSE_TARGET)/actions/live \
 	$(SYNAPSE_PATH)/actions/log:$(SYNAPSE_TARGET)/actions/log \
 	$(SYNAPSE_PATH)/actions/mifvolt:$(SYNAPSE_TARGET)/actions/mifvolt \
+    $(SYNAPSE_PATH)/actions/modules:$(SYNAPSE_TARGET)/actions/modules \
 	$(SYNAPSE_PATH)/actions/network:$(SYNAPSE_TARGET)/actions/network \
 	$(SYNAPSE_PATH)/actions/output:$(SYNAPSE_TARGET)/actions/output \
 	$(SYNAPSE_PATH)/actions/output_head:$(SYNAPSE_TARGET)/actions/output_head \
