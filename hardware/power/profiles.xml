@@ -120,7 +120,6 @@
 			<enabled>false</enabled>
 			<default>0-3</default>
 			<foreground>0-3</foreground>
-			<foreground_boost>0-3</foreground_boost>
 			<background>0-3</background>
 			<system_background>0-3</system_background>
 			<top_app>0-3</top_app>
