@@ -354,6 +354,7 @@
 					<core3>true</core3>
 					<core4>true</core4>
 				</cores>
+                <governor_data>
 				<!-- Mode index -->
 					<param_index>0</param_index>
 
