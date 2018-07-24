@@ -287,9 +287,6 @@ PRODUCT_PACKAGES += \
 	android.hardware.radio@1.0 \
 	android.hardware.radio.deprecated@1.0 \
 	modemloader
-
-# Properties 
-TARGET_SYSTEM_PROP += device/samsung/zero-common/system.prop
     
 # Ramdisk
 PRODUCT_PACKAGES += \

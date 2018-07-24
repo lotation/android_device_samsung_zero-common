@@ -234,6 +234,10 @@ BOARD_SECCOMP_POLICY += device/samsung/zero-common/seccomp
 # Sepolicy
 BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
 
+# Vendor Build Prop
+TARGET_VENDOR_PROP := device/samsung/zero-common/system.prop
+TARGET_VENDOR_PROP_OVERRIDE := true
+
 # TWRP
 ifneq ($(strip $(wildcard $(TOP)/bootable/recovery/variables.h)),)
 -include device/samsung/zero-common/twrp.mk
