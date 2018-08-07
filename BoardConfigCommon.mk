@@ -62,11 +62,14 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 
-
 # DEX pre-optimizations
 WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
 WITH_DEXPREOPT := true
 
+#
+# Debugging
+#
+TARGET_BUILD_DEBUGGABLE := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
