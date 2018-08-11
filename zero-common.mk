@@ -170,6 +170,12 @@ PRODUCT_PACKAGES += \
 PRORUCT_PACKAGES += \
     libinit_sec
 
+#
+# Init
+#
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/zero.wifi.rc:system/vendor/etc/init/zero.wifi.rc
+
 # IR
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
@@ -276,6 +282,7 @@ TARGET_SYSTEM_PROP += device/samsung/zero-common/system.prop
     
 # Ramdisk
 PRODUCT_PACKAGES += \
+<<<<<<< HEAD
     fstab.samsungexynos7420 \
     init.baseband.rc \
     init.gps.rc \
@@ -291,6 +298,19 @@ PRODUCT_PACKAGES += \
 # cpboot daemon
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
+=======
+	fstab.samsungexynos7420 \
+	init.baseband.rc \
+	init.battery.rc \
+	init.power.rc \
+	init.rilchip.prop \
+	init.rilchip.rc \
+	init.rilchip.sh \
+	init.samsungexynos7420.rc \
+	init.samsungexynos7420.usb.rc \
+	init.recovery.samsungexynos7420.rc \
+	ueventd.samsungexynos7420.rc
+>>>>>>> 39dad6c... zero: updated wifi configuration
 
 # RenderScript
 PRODUCT_PACKAGES += \
