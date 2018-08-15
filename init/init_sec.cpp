@@ -268,6 +268,7 @@ void vendor_load_properties()
     property_override_dual("ro.product.device", "ro.vendor.product.device", device);
     property_override("ro.build.product", product);
     property_override("ro.lineage.device", device);
+    property_override("ro.vendor.product.device", device);
     property_override("ro.build.description", description_orig);
     property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", fingerprint_orig);
 }
