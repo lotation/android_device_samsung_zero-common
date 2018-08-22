@@ -256,6 +256,9 @@ on boot
 
     # CPU Idle
     chown system system /sys/module/cpuidle_exynos64/parameters/enable_mask
+ 
+    # Fast Charging 
+    write /sys/class/sec/switch/afc_disable "0"
 
     on fs
 # permission for CHARGING
