@@ -80,7 +80,7 @@ TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_zero
 # Camera-shims
 TARGET_LD_SHIM_LIBS += \
 	/system/lib/libexynoscamera.so|/vendor/lib/libexynoscamera_shim.so \
-	/system/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so
+	NUM_FRAMEBUFFER_SURFACE_BUFFERS = 3/system/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so
 
 # Fingerprint-shims
 TARGET_LD_SHIM_LIBS += \
@@ -89,6 +89,7 @@ TARGET_LD_SHIM_LIBS += \
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_USES_VIRTUAL_DISPLAY := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # (G)SCALER
 BOARD_USES_SCALER := true
@@ -172,7 +173,7 @@ TARGET_SLSI_VARIANT := cm
 
 # Fingerprint HAL
 TARGET_SEC_FP_HAL_VARIANT := bauth
-
+NUM_FRAMEBUFFER_SURFACE_BUFFERS = 3
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 SIM_COUNT := 2
