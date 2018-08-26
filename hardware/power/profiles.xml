@@ -41,18 +41,20 @@
 					<core3>true</core3>
 					<core4>true</core4>
 				</cores>
+				<!-- TODO: governor-data cannot be inherited yet -->
 				<governor_data>
 					<!-- Mode index -->
 					<param_index>0</param_index>
 
-					<above_hispeed_delay>59000</above_hispeed_delay>
+					<above_hispeed_delay>35000</above_hispeed_delay>
 					<boost>0</boost>
 					<boostpulse_duration>40000</boostpulse_duration>
 					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>99</go_hispeed_load>
+					<go_hispeed_load>95</go_hispeed_load>
 					<io_is_busy>1</io_is_busy>
 					<min_sample_time>40000</min_sample_time>
-					<target_loads>80</target_loads>
+					<mode>0</mode>
+					<target_loads>75</target_loads>
 					<timer_rate>20000</timer_rate>
 					<timer_slack>20000</timer_slack>
 
@@ -63,7 +65,7 @@
 					<single_exit_load>90</single_exit_load>
 					<single_exit_time>80000</single_exit_time>
 
-					<!-- Multi mode -->
+                    <!-- Multi mode -->
 					<multi_cluster0_min_freq>0</multi_cluster0_min_freq>
 					<multi_enter_load>800</multi_enter_load>
 					<multi_enter_time>80000</multi_enter_time>
@@ -81,38 +83,37 @@
 				<cores>
 					<enabled>true</enabled>
 					<core1>true</core1>
-					<core2>false</core2>
-					<core3>false</core3>
-					<core4>false</core4>
+					<core2>true</core2>
+					<core3>true</core3>
+					<core4>true</core4>
 				</cores>
+				<!-- TODO: governor-data cannot be inherited yet -->
 				<governor_data>
-					<!-- Mode index -->
-					<param_index>0</param_index>
-
-					<above_hispeed_delay>59000</above_hispeed_delay>
+					<above_hispeed_delay>35000</above_hispeed_delay>
 					<boost>0</boost>
 					<boostpulse_duration>40000</boostpulse_duration>
 					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>99</go_hispeed_load>
+					<go_hispeed_load>97</go_hispeed_load>
 					<io_is_busy>1</io_is_busy>
 					<min_sample_time>40000</min_sample_time>
+					<mode>0</mode>
 					<target_loads>80</target_loads>
 					<timer_rate>20000</timer_rate>
 					<timer_slack>20000</timer_slack>
 
 					<!-- Single mode -->
 					<single_cluster0_min_freq>0</single_cluster0_min_freq>
-					<single_enter_load>200</single_enter_load>
-					<single_enter_time>160000</single_enter_time>
-					<single_exit_load>90</single_exit_load>
-					<single_exit_time>80000</single_exit_time>
+					<single_enter_load>95</single_enter_load>
+					<single_enter_time>199000</single_enter_time>
+					<single_exit_load>60</single_exit_load>
+					<single_exit_time>99000</single_exit_time>
 
 					<!-- Multi mode -->
 					<multi_cluster0_min_freq>0</multi_cluster0_min_freq>
-					<multi_enter_load>800</multi_enter_load>
-					<multi_enter_time>80000</multi_enter_time>
-					<multi_exit_load>360</multi_exit_load>
-					<multi_exit_time>320000</multi_exit_time>
+					<multi_enter_load>360</multi_enter_load>
+					<multi_enter_time>79000</multi_enter_time>
+					<multi_exit_load>240</multi_exit_load>
+					<multi_exit_time>299000</multi_exit_time>
 				</governor_data>
 			</atlas>
 		</cpu>
@@ -156,7 +157,7 @@
 			</highspeed>
 		</gpu>
 		<kernel>
-			<enabled>true</enabled>
+			<enabled>false</enabled>
 			<pewq>true</pewq>
 		</kernel>
 		<ipa>
@@ -184,92 +185,27 @@
 		<cpu>
 			<apollo>
 				<freq_min>200000</freq_min>
-				<freq_max>1296000</freq_max>
-				<freq_hispeed>400000</freq_hispeed>
-				<governor_data>
-					<!-- Mode index -->
-					<param_index>0</param_index>
-
-					<above_hispeed_delay>25000</above_hispeed_delay>
-					<boost>0</boost>
-					<boostpulse_duration>40000</boostpulse_duration>
-					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>95</go_hispeed_load>
-					<io_is_busy>1</io_is_busy>
-					<min_sample_time>40000</min_sample_time>
-					<target_loads>80</target_loads>
-					<timer_rate>20000</timer_rate>
-					<timer_slack>20000</timer_slack>
-
-					<!-- Single mode -->
-					<single_cluster0_min_freq>0</single_cluster0_min_freq>
-					<single_enter_load>200</single_enter_load>
-					<single_enter_time>160000</single_enter_time>
-					<single_exit_load>90</single_exit_load>
-					<single_exit_time>80000</single_exit_time>
-
-					<!-- Multi mode -->
-					<multi_cluster0_min_freq>0</multi_cluster0_min_freq>
-					<multi_enter_load>800</multi_enter_load>
-					<multi_enter_time>80000</multi_enter_time>
-					<multi_exit_load>360</multi_exit_load>
-					<multi_exit_time>320000</multi_exit_time>
-				</governor_data>
+				<freq_max>1500000</freq_max>
+				<freq_hispeed>600000</freq_hispeed>
 			</apollo>
 			<atlas>
 				<freq_min>200000</freq_min>
 				<freq_max>1704000</freq_max>
-				<freq_hispeed>300000</freq_hispeed>
-				<cores>
-					<enabled>true</enabled>
-					<core1>true</core1>
-					<core2>true</core2>
-					<core3>false</core3>
-					<core4>false</core4>
-				</cores>
-				<governor_data>
-					<!-- Mode index -->
-					<param_index>0</param_index>
-
-					<above_hispeed_delay>25000</above_hispeed_delay>
-					<boost>0</boost>
-					<boostpulse_duration>40000</boostpulse_duration>
-					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>93</go_hispeed_load>
-					<io_is_busy>1</io_is_busy>
-					<min_sample_time>40000</min_sample_time>
-					<target_loads>80</target_loads>
-					<timer_rate>20000</timer_rate>
-					<timer_slack>20000</timer_slack>
-
-					<!-- Single mode -->
-					<single_cluster0_min_freq>0</single_cluster0_min_freq>
-					<single_enter_load>200</single_enter_load>
-					<single_enter_time>160000</single_enter_time>
-					<single_exit_load>90</single_exit_load>
-					<single_exit_time>80000</single_exit_time>
-
-					<!-- Multi mode -->
-					<multi_cluster0_min_freq>0</multi_cluster0_min_freq>
-					<multi_enter_load>800</multi_enter_load>
-					<multi_enter_time>80000</multi_enter_time>
-					<multi_exit_load>360</multi_exit_load>
-					<multi_exit_time>320000</multi_exit_time>
-				</governor_data>
+				<freq_hispeed>600000</freq_hispeed>
 			</atlas>
 		</cpu>
 		<gpu>
 			<dvfs>
 				<freq_min>100</freq_min>
-				<freq_max>544</freq_max>
+				<freq_max>700</freq_max>
 			</dvfs>
 			<highspeed>
-				<freq>350</freq>
-				<load>95</load>
+				<freq>544</freq>
+				<load>89</load>
 			</highspeed>
 		</gpu>
 		<ipa>
-			<control_temp>65</control_temp>
+			<control_temp>60</control_temp>
 		</ipa>
 	</power_save>
 
@@ -280,28 +216,23 @@
 		<enabled>true</enabled>
 		<cpu>
 			<apollo>
-				<freq_max>1500000</freq_max>
-				<freq_hispeed>700000</freq_hispeed>
+				<freq_min>400000</freq_min>
+				<freq_hispeed>900000</freq_hispeed>
 			</apollo>
 			<atlas>
 				<freq_min>400000</freq_min>
-				<freq_max>2100000</freq_max>
-				<freq_hispeed>700000</freq_hispeed>
-				<cores>
-					<enabled>true</enabled>
-					<core1>true</core1>
-					<core2>true</core2>
-					<core3>true</core3>
-					<core4>false</core4>
-				</cores>
+                <freq_max>2100000</freq_max>
+				<freq_hispeed>900000</freq_hispeed>
 			</atlas>
 		</cpu>
 		<gpu>
 			<highspeed>
 				<freq>544</freq>
-				<load>89</load>
 			</highspeed>
 		</gpu>
+		<ipa>
+			<control_temp>65</control_temp>
+		</ipa>
 	</bias_power_save>
 
 	<!--
@@ -312,8 +243,8 @@
 		<cpu>
 			<enabled>true</enabled>
 			<apollo>
-			    <freq_min>400000</freq_min>
-				<freq_boost>90000</freq_boost>
+				<freq_boost>1500000</freq_boost>
+                <!-- TODO: governor-data cannot be inherited yet -->
 				<governor_data>
 					<!-- Mode index -->
 					<param_index>0</param_index>
@@ -322,8 +253,8 @@
 					<boost>0</boost>
 					<boostpulse_duration>40000</boostpulse_duration>
 					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>89</go_hispeed_load>
-					<io_is_busy>1</io_is_busy>
+					<go_hispeed_load>85</go_hispeed_load>
+					<io_is_busy>0</io_is_busy>
 					<min_sample_time>40000</min_sample_time>
 					<mode>0</mode>
 					<target_loads>75</target_loads>
@@ -337,25 +268,18 @@
 					<single_exit_load>90</single_exit_load>
 					<single_exit_time>80000</single_exit_time>
 
-					<!-- Multi mode -->
+                    <!-- Multi mode -->
 					<multi_cluster0_min_freq>0</multi_cluster0_min_freq>
 					<multi_enter_load>800</multi_enter_load>
 					<multi_enter_time>80000</multi_enter_time>
 					<multi_exit_load>360</multi_exit_load>
 					<multi_exit_time>320000</multi_exit_time>
-				</governor_data>
+                </governor_data>
 			</apollo>
 			<atlas>
-				<freq_boost>500000</freq_boost>
-				<cores>
-					<enabled>true</enabled>
-					<core1>true</core1>
-					<core2>true</core2>
-					<core3>true</core3>
-					<core4>true</core4>
-				</cores>
+				<freq_boost>0</freq_boost>
                 <governor_data>
-				<!-- Mode index -->
+					<!-- Mode index -->
 					<param_index>0</param_index>
 
 					<above_hispeed_delay>59000 1300000:39000 1700000:19000</above_hispeed_delay>
@@ -363,7 +287,7 @@
 					<boostpulse_duration>40000</boostpulse_duration>
 					<enforced_mode>0</enforced_mode>
 					<go_hispeed_load>89</go_hispeed_load>
-					<io_is_busy>1</io_is_busy>
+					<io_is_busy>0</io_is_busy>
 					<min_sample_time>40000</min_sample_time>
 					<mode>0</mode>
 					<target_loads>65 1500000:75</target_loads>
@@ -390,10 +314,17 @@
 			<semiboost>true</semiboost>
 		</hmp>
 		<gpu>
+            <dvfs>
+				<freq_min>160</freq_min>
+				<freq_max>772</freq_max>
+			</dvfs>
 			<highspeed>
 				<freq>600</freq>
 			</highspeed>
 		</gpu>
+        <ipa>
+			<control_temp>75</control_temp>
+		</ipa>
 	</balanced>
 
 	<!--
@@ -403,75 +334,8 @@
 	<bias_performance extends="balanced">
 		<enabled>true</enabled>
 		<cpu>
-			<apollo>
-				<governor>interactive</governor>
-				<freq_min>400000</freq_min>
-				<freq_hispeed>900000</freq_hispeed>
-				<governor_data>
-					<!-- Mode index -->
-					<param_index>0</param_index>
-
-					<above_hispeed_delay>19000</above_hispeed_delay>
-					<boost>0</boost>
-					<boostpulse_duration>40000</boostpulse_duration>
-					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>85</go_hispeed_load>
-					<io_is_busy>0</io_is_busy>
-					<min_sample_time>40000</min_sample_time>
-					<mode>0</mode>
-					<target_loads>75</target_loads>
-					<timer_rate>20000</timer_rate>
-					<timer_slack>20000</timer_slack>
-
-					<!-- Single mode -->
-					<single_cluster0_min_freq>0</single_cluster0_min_freq>
-					<single_enter_load>200</single_enter_load>
-					<single_enter_time>160000</single_enter_time>
-					<single_exit_load>90</single_exit_load>
-					<single_exit_time>80000</single_exit_time>
-
-					<!-- Multi mode -->
-					<multi_cluster0_min_freq>0</multi_cluster0_min_freq>
-					<multi_enter_load>800</multi_enter_load>
-					<multi_enter_time>80000</multi_enter_time>
-					<multi_exit_load>360</multi_exit_load>
-					<multi_exit_time>320000</multi_exit_time>
-				</governor_data>
-			</apollo>
 			<atlas>
-				<governor>interactive</governor>
-				<freq_min>600000</freq_min>
 				<freq_hispeed>1000000</freq_hispeed>
-				<governor_data>
-					<!-- Mode index -->
-					<param_index>0</param_index>
-
-					<above_hispeed_delay>59000 1300000:39000 1700000:19000</above_hispeed_delay>
-					<boost>0</boost>
-					<boostpulse_duration>40000</boostpulse_duration>
-					<enforced_mode>0</enforced_mode>
-					<go_hispeed_load>89</go_hispeed_load>
-					<io_is_busy>0</io_is_busy>
-					<min_sample_time>40000</min_sample_time>
-					<mode>0</mode>
-					<target_loads>65 1500000:75</target_loads>
-					<timer_rate>20000</timer_rate>
-					<timer_slack>20000</timer_slack>
-
-					<!-- Single mode -->
-					<single_cluster0_min_freq>800000</single_cluster0_min_freq>
-					<single_enter_load>95</single_enter_load>
-					<single_enter_time>199000</single_enter_time>
-					<single_exit_load>60</single_exit_load>
-					<single_exit_time>99000</single_exit_time>
-
-					<!-- Multi mode -->
-					<multi_cluster0_min_freq>1200000</multi_cluster0_min_freq>
-					<multi_enter_load>360</multi_enter_load>
-					<multi_enter_time>79000</multi_enter_time>
-					<multi_exit_load>240</multi_exit_load>
-					<multi_exit_time>299000</multi_exit_time>
-				</governor_data>
 			</atlas>
 		</cpu>
 		<hmp>
@@ -485,12 +349,6 @@
 				<freq>700</freq>
 			</highspeed>
 		</gpu>
-		<kernel>
-			<pewq>false</pewq>
-		</kernel>
-		<ipa>
-			<control_temp>70</control_temp>
-		</ipa>
 	</bias_performance>
 
 	<!--
@@ -500,16 +358,12 @@
 		<enabled>true</enabled>
 		<cpu>
 			<apollo>
-				<freq_min>400000</freq_min>
+				<freq_min>600000</freq_min>
 			</apollo>
 			<atlas>
 				<freq_min>800000</freq_min>
 			</atlas>
 		</cpu>
-		<hmp>
-			<boost>true</boost>
-			<semiboost>false</semiboost>
-		</hmp>
 		<gpu>
 			<dvfs>
 				<freq_min>350</freq_min>
@@ -519,7 +373,8 @@
 			</highspeed>
 		</gpu>
 		<ipa>
-			<control_temp>75</control_temp>
+			<control_temp>80</control_temp>
 		</ipa>
 	</performance>
+
 </profiles>
