@@ -126,14 +126,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	dtbhtoolExynos
 
-# Remove unwanted packages
-PRODUCT_PACKAGES += \
-    RemovePackages
-
-# Doze
-PRODUCT_PACKAGES += \
-    ZeroDoze
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
