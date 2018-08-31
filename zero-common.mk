@@ -282,35 +282,20 @@ TARGET_SYSTEM_PROP += device/samsung/zero-common/system.prop
     
 # Ramdisk
 PRODUCT_PACKAGES += \
-<<<<<<< HEAD
     fstab.samsungexynos7420 \
     init.baseband.rc \
     init.gps.rc \
     init.power.rc \
     init.samsungexynos7420.rc \
     init.samsungexynos7420.usb.rc \
-    init.wifi.rc \
     ueventd.samsungexynos7420.rc \
     init.carrier.rc \
     init.rilchip.rc \
-    init.rilchip.sh \
+    init.rilchip.sh 
 
 # cpboot daemon
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
-=======
-	fstab.samsungexynos7420 \
-	init.baseband.rc \
-	init.battery.rc \
-	init.power.rc \
-	init.rilchip.prop \
-	init.rilchip.rc \
-	init.rilchip.sh \
-	init.samsungexynos7420.rc \
-	init.samsungexynos7420.usb.rc \
-	init.recovery.samsungexynos7420.rc \
-	ueventd.samsungexynos7420.rc
->>>>>>> 39dad6c... zero: updated wifi configuration
 
 # RenderScript
 PRODUCT_PACKAGES += \
