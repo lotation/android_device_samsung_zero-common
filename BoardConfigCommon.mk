@@ -74,6 +74,12 @@ BOARD_USES_SKIA_FIMGAPI := true
 #
 TARGET_BUILD_DEBUGGABLE := true
 
+#
+# DEX pre-optimizations
+#
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
+WITH_DEXPREOPT := true
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
