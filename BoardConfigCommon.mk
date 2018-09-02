@@ -111,8 +111,9 @@ TARGET_LD_SHIM_LIBS += \
 	/system/bin/gpsd|/vendor/lib64/libsensor_shim.so
 
 # Hardware
-BOARD_HARDWARE_CLASS += hardware/samsung/lineagehw
-BOARD_HARDWARE_CLASS += device/samsung/zero-common/lineagehw
+JAVA_SOURCE_OVERLAYS := \
+    org.lineageos.hardware|hardware/samsung/lineagehw|**/*.java \
+    org.lineageos.hardware|device/samsung/zero-common/lineagehw|**/*.java
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := false
@@ -128,6 +129,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/zero-common/releasetools
 # HDMI
 BOARD_HDMI_INCAPABLE := true
 BOARD_USES_GSC_VIDEO := true
+
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_sec
