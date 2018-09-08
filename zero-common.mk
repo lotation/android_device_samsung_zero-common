@@ -291,6 +291,10 @@ PRODUCT_PACKAGES += \
     init.rilchip.rc \
     init.rilchip.sh 
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # cpboot daemon
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
