@@ -91,7 +91,7 @@ TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_zero
 # Camera-shims
 TARGET_LD_SHIM_LIBS += \
 	/system/lib/libexynoscamera.so|/vendor/lib/libexynoscamera_shim.so \
-	NUM_FRAMEBUFFER_SURFACE_BUFFERS = 3/system/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so
+	/system/lib64/libexynoscamera.so|/vendor/lib64/libexynoscamera_shim.so
 
 # Fingerprint-shims
 TARGET_LD_SHIM_LIBS += \
