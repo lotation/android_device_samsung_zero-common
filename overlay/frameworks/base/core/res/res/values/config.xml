@@ -357,9 +357,6 @@ Add a comment to this line
          scaled proportionally to the smaller buckets.  -1 keeps the default. -->
    <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">-1</integer>
 
-   <!-- Whether device supports double tap to wake -->
-   <bool name="config_supportDoubleTapWake">true</bool>
-
     <!-- Allow automatic adjusting of the screen brightness while dozing in low power state. -->
     <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
