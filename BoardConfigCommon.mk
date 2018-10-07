@@ -21,13 +21,6 @@ BOARD_VENDOR := samsung
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-# Include path for gralloc.h
-TARGET_SPECIFIC_HEADER_PATH += \
-    -I frameworks/native/libs/arect/include \
-    -I frameworks/native/libs/nativebase/include \
-    -I frameworks/native/libs/nativewindow/include \
-    -I
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -91,6 +84,7 @@ TARGET_LD_SHIM_LIBS += \
 
 # Graphics
 USE_OPENGL_RENDERER := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 BOARD_USES_VIRTUAL_DISPLAY := true
 
 # (G)SCALER
