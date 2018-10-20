@@ -127,10 +127,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	dtbhtoolExynos
 
-# Remove unwanted packages
-PRODUCT_PACKAGES += \
-    RemovePackages
-
 # Doze
 PRODUCT_PACKAGES += \
     ZeroDoze
@@ -242,7 +238,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfcee_access.xml:system/etc/nfcee_access.xml \
     $(LOCAL_PATH)/configs/libnfc-sec-hal.conf:system/vendor/etc/libnfc-sec-hal.conf \
     $(LOCAL_PATH)/configs/libnfc-sec.conf:system/vendor/etc/libnfc-sec.conf \
-    $(LOCAL_PATH)/configs/libnfc-brcm.conf:system/vendor/etc/libnfc-brcm.conf
+    $(LOCAL_PATH)/configs/libnfc-brcm.conf:system/vendor/etc/libnfc-nci.conf
 
 # Network
 PRODUCT_PACKAGES += \
@@ -257,14 +253,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
 device/samsung/zero-common/hardware/power/profiles.xml:system/etc/power_profiles.xml
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service.zero \
-    vendor.lineage.livedisplay-V1.0-java
-
-PRODUCT_BOOT_JARS += \
-    vendor.lineage.livedisplay-V1.0-java
 	
 # OpenMAX-shims
 PRODUCT_PACKAGES += \
@@ -339,7 +327,7 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-impl \
-    android.hardware.usb@1.0-service
+    android.hardware.usb@1.0-service.basic
 
 # Vibrator
 PRODUCT_PACKAGES += \

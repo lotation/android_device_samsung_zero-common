@@ -74,9 +74,10 @@ ro.nfc.sec_hal=true
 # HWC
 #
 
-debug.hwc.force_gpu=0
-debug.hwc.winupdate=1
-debug.hwc.max_hw_overlays=6
+debug.hwc.force_gpu=1
+debug.egl.hw=0
+debug.sf.hw=0
+persist.sys.ui.hw=false
 
 #
 # Graphics
@@ -95,6 +96,11 @@ af.fast_track_multiplier=1
 audio_hal.force_voice_config=wide
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=15
+
+#
+# USB
+#
+sys.usb.ffs.aio_compat=1
 
 #
 # Wi-Fi

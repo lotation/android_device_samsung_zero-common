@@ -62,6 +62,12 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 
+
+# DEX pre-optimizations
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
+WITH_DEXPREOPT := true
+
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -77,7 +83,7 @@ TARGET_LD_SHIM_LIBS += \
 
 # Fingerprint-shims
 TARGET_LD_SHIM_LIBS += \
-	/system/lib64/libbauthserver.so|/vendor/lib64/libbauthtzcommon_shim.so
+	/system/lib64/hw/fingerprint.vendor.exynos5.so|/vendor/lib64/libbauthtzcommon_shim.so
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -164,12 +170,10 @@ TARGET_BOARD_PLATFORM := exynos5
 TARGET_SOC := exynos7420
 TARGET_SLSI_VARIANT := cm
 
-# Fingerprint HAL
-TARGET_SEC_FP_HAL_VARIANT := bauth
-
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 SIM_COUNT := 2
+ENABLE_VENDOR_RIL_SERVICE := true
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
