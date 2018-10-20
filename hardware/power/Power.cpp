@@ -83,7 +83,7 @@ Power::Power()
 
 	// enable all input-devices
 	setInputState(true);
-	setFingerprintState(true);
+    setFingerprintState(true);
 
 	ALOGV("%s: exit;", __func__);
 }

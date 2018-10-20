@@ -41,7 +41,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libutils \
 	libxml2 \
 	libzeroutils \
-	android.hardware.power@1.0
+	android.hardware.power@1.0 
 
 LOCAL_C_INCLUDES := \
 	external/libxml2/include

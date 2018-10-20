@@ -134,11 +134,6 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/gps.xml:system/etc/gps.xml \
-    $(LOCAL_PATH)/configs/lhd.conf:system/etc/lhd.conf
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprint.exynos5 \
@@ -159,6 +154,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libsensor_shim \
     gps.default
+
+# GPS Configs
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/zero.gps.rc:system/vendor/etc/init/zero.gps.rc \
+    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/configs/gps.xml:system/etc/gps.xml \
+    $(LOCAL_PATH)/configs/lhd.conf:system/etc/lhd.conf
+
 
 # Graphics
 PRODUCT_PACKAGES += \
