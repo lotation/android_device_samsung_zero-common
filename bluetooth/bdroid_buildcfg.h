@@ -15,9 +15,6 @@
  * limitations under the License.
  */
 
-#include <cutils/properties.h>
-#include <string.h>
-
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
