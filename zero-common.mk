@@ -155,13 +155,6 @@ PRODUCT_PACKAGES += \
     libsensor_shim \
     gps.default
 
-# GPS Configs
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/zero.gps.rc:system/vendor/etc/init/zero.gps.rc \
-    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/gps.xml:system/etc/gps.xml \
-    $(LOCAL_PATH)/configs/lhd.conf:system/etc/lhd.conf
-
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -175,12 +168,6 @@ PRODUCT_PACKAGES += \
 # Init
 PRORUCT_PACKAGES += \
     libinit_sec
-
-#
-# Init
-#
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/zero.wifi.rc:system/vendor/etc/init/zero.wifi.rc
 
 # IR
 PRODUCT_PACKAGES += \
@@ -288,14 +275,12 @@ TARGET_SYSTEM_PROP += device/samsung/zero-common/system.prop
 PRODUCT_PACKAGES += \
 	fstab.samsungexynos7420 \
 	init.baseband.rc \
-	init.battery.rc \
 	init.power.rc \
 	init.rilchip.prop \
 	init.rilchip.rc \
 	init.rilchip.sh \
 	init.samsungexynos7420.rc \
 	init.samsungexynos7420.usb.rc \
-	init.recovery.samsungexynos7420.rc \
 	ueventd.samsungexynos7420.rc
 
 # RenderScript
