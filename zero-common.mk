@@ -32,6 +32,8 @@ else
 DEVICE_PACKAGE_OVERLAYS += device/samsung/zero-common/overlay-gsm
 endif
 
+PRODUCT_ENFORCE_RRO_TARGETS := *
+
 # This device is 640dpi.  However the platform doesn't
 # currently contain all of the bitmaps at 640dpi density so
 # we do this little trick to fall back to the xxhdpi version
