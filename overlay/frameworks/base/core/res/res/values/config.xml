@@ -332,22 +332,12 @@ Add a comment to this line
          turned off and the screen off animation has been performed. -->
     <bool name="config_dozeAfterScreenOff">true</bool> 
 
-    <!-- Enable NightLight -->
-   <bool name="config_nightDisplayAvailable">true</bool>  
-
-   <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
-         in hardware. -->
-    <bool name="config_setColorTransformAccelerated">true</bool>
-
     <!-- Allow automatic adjusting of the screen brightness while dozing in low power state. -->
     <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 
     <!-- If we allow automatic adjustment of screen brightness while dozing, how many times we want
          to reduce it to preserve the battery. Value of 100% means no scaling. -->
     <fraction name="config_screenAutoBrightnessDozeScaleFactor">50%</fraction>
-
-    <!-- Whether device supports double tap to wake -->
-    <bool name="config_supportDoubleTapWake">true</bool>
 
     <!-- The device supports freeform window management. Windows have title bars and can be moved
          and resized. If you set this to true, you also need to add
