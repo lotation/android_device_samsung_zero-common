@@ -252,11 +252,17 @@ PRODUCT_PACKAGES += \
 #
 # Power
 #
-PRODUCT_PACKAGES += \
-	android.hardware.power@1.0-service.zero
+# PRODUCT_PACKAGES += \
+#	android.hardware.power@1.0-service.zero
 
-PRODUCT_COPY_FILES += \
-device/samsung/zero-common/hardware/power/profiles.xml:system/etc/power_profiles.xml
+# PRODUCT_COPY_FILES += \
+# device/samsung/zero-common/hardware/power/profiles.xml:system/etc/power_profiles.xml
+
+# Samsung PowerHal
+PRODUCT_PACKAGES += \
+    power.universal7420 \
+    android.hardware.power@1.0-service \
+    android.hardware.power@1.0-impl
 
 # LiveDisplay
 PRODUCT_PACKAGES += \

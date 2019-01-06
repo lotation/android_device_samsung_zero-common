@@ -192,6 +192,9 @@ TARGET_SLSI_VARIANT := cm
 # Fingerprint HAL
 TARGET_SEC_FP_HAL_VARIANT := bauth
 
+# PowerHal
+TARGET_POWERHAL_VARIANT := samsung
+
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 SIM_COUNT := 2
