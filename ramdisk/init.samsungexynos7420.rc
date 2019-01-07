@@ -41,17 +41,17 @@ on post-fs-data
     chown system radio /sys/class/audio/earjack/key_state
     chown system radio /sys/class/audio/earjack/state
     chown system radio /sys/class/audio/earjack/mic_adc
-    chown system audio /sys/class/dsm/max98505/dsm_log
-    chown system audio /sys/class/dsm/maxdsm_cal/max
-    chown system audio /sys/class/dsm/maxdsm_cal/min
-    chown system audio /sys/class/dsm/maxdsm_cal/status
-    chown system audio /sys/class/dsm/maxdsm_cal/duration
-    chown system audio /sys/class/dsm/maxdsm_cal/temp
-    chown system audio /sys/class/dsm/maxdsm_cal/rdc
+    chown system radio /sys/class/dsm/max98505/dsm_log
+    chown system radio /sys/class/dsm/maxdsm_cal/max
+    chown system radio /sys/class/dsm/maxdsm_cal/min
+    chown system radio /sys/class/dsm/maxdsm_cal/status
+    chown system radio /sys/class/dsm/maxdsm_cal/duration
+    chown system radio /sys/class/dsm/maxdsm_cal/temp
+    chown system radio /sys/class/dsm/maxdsm_cal/rdc
     mkdir /data/firmware 0770 audioserver system
-    mkdir /efs/maxim 0770 system audio
-    chown system audio /efs/maxim/temp_cal
-    chown system audio /efs/maxim/rdc_cal
+    mkdir /efs/maxim 0770 radio system
+    chown system radio /efs/maxim/temp_cal
+    chown system radio /efs/maxim/rdc_cal
     chmod 0660 /efs/maxim/temp_cal
     chmod 0660 /efs/maxim/rdc_cal
     chown audioserver system /data/firmware
@@ -71,7 +71,7 @@ on post-fs-data
     chown system radio /sys/class/camera/rear/fw_update
     chown system radio /sys/class/camera/rear/from_write
     chown system radio /sys/class/camera/flash/rear_flash
-    chown cameraserver system /sys/class/camera/flash/rear_torch_flash
+    chown media system /sys/class/camera/flash/rear_torch_flash
     chmod 0664 /sys/class/camera/flash/rear_flash
     chmod 0664 /sys/class/camera/flash/rear_torch_flash
     chown system radio /sys/class/camera/front/front_camfw
@@ -207,8 +207,8 @@ on boot
     # Use higher control-temperature for IPA (default: 45)
     write /sys/power/ipa/control_temp 65
 
-    # Set vibrator intensity 75%
-    write /sys/devices/virtual/timed_output/vibrator/intensity 7500
+    # Set vibrator intensity 65%
+    write /sys/devices/virtual/timed_output/vibrator/intensity 6500
 
     #setprop ro.radio.noril yes
 
@@ -238,11 +238,8 @@ on boot
     chmod 0660 /dev/ttySAC4
 
 # mobicore
-    chmod 0660 /dev/s5p-smem
     chmod 0660 /dev/t-base-tui
-    chown media system /dev/s5p-smem
     chown system system /dev/t-base-tui
-    export MC_AUTH_TOKEN_PATH /efs
 
 # sem_daemon permission
     chown system system /efs/sec_efs/ssp_data
@@ -274,6 +271,8 @@ on boot
     chown bluetooth bluetooth ro.bt.bdaddr_path
     chown radio bluetooth /efs/bluetooth/bt_addr
     chmod 0640 /efs/bluetooth/bt_addr
+    chown bluetooth bluetooth /dev/ttySAC4
+    chmod 0660 /dev/ttySAC4
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -289,7 +288,7 @@ on boot
     chown system radio /sys/class/android_usb/android0/usb_lock
 
 # SSWAP
-    write /proc/sys/vm/swappiness 130
+    write /proc/sys/vm/swappiness 150
 
     # FM Radio
     chmod 0640 /dev/fmradio
@@ -415,8 +414,14 @@ on fs
 # Permissions for System LSI NFC
 # NFC : Permissions for NFC
     chmod 0660 /dev/sec-nfc
+    chmod 0660 /dev/sec-nfc-fn
+    chmod 0660 /dev/felica_ant
+    chmod 0660 /dev/ttySAC0
 # NFC : change owner
     chown nfc nfc /dev/sec-nfc
+    chown nfc nfc /dev/sec-nfc-fn
+    chown nfc nfc /dev/felica_ant
+    chown nfc nfc /dev/ttySAC0
 
 # Permissions for NXP NFC
 # NFC : Permissions for NFC
@@ -431,6 +436,9 @@ on fs
 # Permissions for S.LSI ESE
     chmod 0660 /dev/p3
     chown system system /dev/p3
+
+# NFC : create data/nfc for nv storage
+    mkdir /efs/sec_efs/nfc 0500 nfc nfc
 
 # terminal mode
     chmod 0660 /sys/class/android_usb/android0/terminal_version
@@ -706,12 +714,6 @@ on fs
 # usb disable
     chown system usb /sys/class/usb_notify/usb_control/disable
     chmod 0664 /sys/class/usb_notify/usb_control/disable
-
-# ARGOSD
-service argos-daemon /system/bin/argosd
-    class main
-    user system
-    group system radio
 
 # MobiCore startup
 service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
