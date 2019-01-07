@@ -238,8 +238,11 @@ on boot
     chmod 0660 /dev/ttySAC4
 
 # mobicore
+    chmod 0660 /dev/s5p-smem
     chmod 0660 /dev/t-base-tui
+    chown media system /dev/s5p-smem
     chown system system /dev/t-base-tui
+    export MC_AUTH_TOKEN_PATH /efs
 
 # sem_daemon permission
     chown system system /efs/sec_efs/ssp_data
