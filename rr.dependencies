@@ -37,7 +37,7 @@
     },
     {
         "remote": "github",
-        "repository": "enesuzun2002/proprietary_vendor_samsung",
+        "repository": "enesuzun2002/proprietary_vendor_samsung_zero-common",
         "target_path": "vendor/samsung/zero-common",
         "branch": "pie"
     }
