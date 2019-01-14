@@ -15,9 +15,24 @@
 # limitations under the License.
 #
 
-zero_build_fingerprint := "Samsung/$(PRODUCT_NAME)/$(PRODUCT_NAME):$(PLATFORM_VERSION)/$(BUILD_ID)/$(BUILD_NUMBER):$(TARGET_BUILD_VARIANT)/test-keys"
 zero_build_flavor      := "$(PRODUCT_NAME)-$(TARGET_BUILD_VARIANT)"
 zero_build_descr       := "$(zero_build_flavor) $(PLATFORM_VERSION) $(BUILD_ID) $(BUILD_NUMBER) test-keys"
+
+ifneq ($(filter zerofltecan ,$(TARGET_DEVICE)),)
+zero_build_fingerprint := "samsung/zerofltecan/zeroflte:7.0/NRD90M/G920W8VLU6DRF1:user/release-keys"
+endif
+
+ifneq ($(filter zerofltexx ,$(TARGET_DEVICE)),)
+zero_build_fingerprint := "samsung/zerofltexx/zeroflte:7.0/NRD90M/G920FXXU6ERK2:user/release-keys"
+endif
+
+ifneq ($(filter zeroltecan ,$(TARGET_DEVICE)),)
+zero_build_fingerprint := "samsung/zeroltecan/zerolte:7.0/NRD90M/G925W8VLU6DRF1:user/release-keys"
+endif
+
+ifneq ($(filter zeroltexx ,$(TARGET_DEVICE)),)
+zero_build_fingerprint := "samsung/zeroltexx/zerolte:7.0/NRD90M/G925FXXU6ERK2:user/release-keys"
+endif
 
 __PRODUCT_TARGET_NAME := $(PRODUCT_NAME)
 
