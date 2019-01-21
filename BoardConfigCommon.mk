@@ -63,6 +63,12 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
+#
+# DEX pre-optimizations
+#
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
+WITH_DEXPREOPT := true
+
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 
@@ -110,9 +116,13 @@ BOARD_USE_NON_CACHED_GRAPHICBUFFER := true
 TARGET_LD_SHIM_LIBS += \
 	/system/bin/gpsd|/system/lib64/libsensor.so
 
-# Hardware
-BOARD_HARDWARE_CLASS += hardware/samsung/lineagehw
-BOARD_HARDWARE_CLASS += device/samsung/zero-common/lineagehw
+#
+# Hardware Classes
+#
+## LineageOS HW
+JAVA_SOURCE_OVERLAYS := \
+    org.lineageos.hardware|hardware/samsung/lineagehw|**/*.java \
+    org.lineageos.hardware|device/samsung/zero-common/lineagehw|**/*.java
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := false
