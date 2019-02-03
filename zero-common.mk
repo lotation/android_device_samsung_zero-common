@@ -253,14 +253,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
 device/samsung/zero-common/hardware/power/profiles.xml:system/etc/power_profiles.xml
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@1.0-service-sdm \
-    vendor.lineage.livedisplay-V1.0-java
-
-PRODUCT_BOOT_JARS += \
-    vendor.lineage.livedisplay-V1.0-java
 	
 # OpenMAX-shims
 PRODUCT_PACKAGES += \
@@ -320,7 +312,11 @@ PRODUCT_COPY_FILES += \
 
 # Sensorhub
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/android.hardware.sensors@1.0-service.rc:system/vendor/etc/init/android.hardware.sensors@1.0-service.rc
 
 # Stagefright-shims
 PRODUCT_PACKAGES += \
