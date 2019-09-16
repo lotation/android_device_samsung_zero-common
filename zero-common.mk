@@ -107,6 +107,10 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@4.0-impl \
     android.hardware.audio.effect@4.0-impl
 
+# APEX
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ld.config.txt:system/etc/swcodec/ld.config.txt
+
 # Bluetooth
 PRODUCT_PACKAGES += \
 	android.hardware.bluetooth@1.0-impl.zero \
