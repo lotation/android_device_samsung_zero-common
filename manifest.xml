@@ -162,7 +162,6 @@
 
     <!--
         LiveDisplay
-      -->
 
     <hal format="hidl">
         <name>vendor.lineage.livedisplay</name>
@@ -189,6 +188,8 @@
             <instance>default</instance>
         </interface>
     </hal>
+
+    -->
 
     <!--
         Location
@@ -232,6 +233,9 @@
             <instance>default</instance>
         </interface>
     </hal>
+
+    <!--
+
     <hal format="hidl">
         <name>vendor.lineage.power</name>
         <transport>hwbinder</transport>
@@ -241,6 +245,8 @@
             <instance>default</instance>
         </interface>
     </hal>
+
+    -->
 
     <!--
         RIL/Radio
@@ -272,7 +278,6 @@
 
     <!--
         Touch
-      -->
 
     <hal format="hidl">
         <name>vendor.lineage.touch</name>
@@ -284,9 +289,11 @@
         </interface>
     </hal>
 
+    -->
+
     <!--
         Trust
-      -->
+
     <hal format="hidl">
         <name>vendor.lineage.trust</name>
         <transport>hwbinder</transport>
@@ -296,6 +303,8 @@
             <instance>default</instance>
         </interface>
     </hal>
+
+    -->
 
     <!--
         USB

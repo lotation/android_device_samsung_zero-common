@@ -217,8 +217,8 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.samsung
 
 # Livedisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service.zero
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.livedisplay@2.0-service.zero
 
 # Memory
 PRODUCT_PACKAGES += \
@@ -340,18 +340,18 @@ PRODUCT_COPY_FILES += \
 #
 # Touch
 #
-PRODUCT_PACKAGES += \
-	vendor.lineage.touch@1.0-service.samsung
+#PRODUCT_PACKAGES += \
+#	vendor.lineage.touch@1.0-service.samsung
 
 # Tools
 PRODUCT_PACKAGES += \
 	resetprop.zero   # Required for setting ro.*-properties for dual-SIM support
 
-ifneq (,$(wildcard lineage-sdk/ ))
+#ifneq (,$(wildcard lineage-sdk/ ))
 # Trust	
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
-endif
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.trust@1.0-service
+#endif
 
 # USB
 PRODUCT_PACKAGES += \
