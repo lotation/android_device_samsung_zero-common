@@ -180,8 +180,8 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.0-service
 
 # Init
-PRORUCT_PACKAGES += \
-    libinit_sec
+#PRORUCT_PACKAGES += \
+#    libinit_sec
 
 # IR
 PRODUCT_PACKAGES += \
