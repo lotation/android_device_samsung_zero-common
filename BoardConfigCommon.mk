@@ -164,6 +164,7 @@ BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
+BOARD_ROOT_EXTRA_FOLDERS += efs
 
 # Manifest
 DEVICE_MANIFEST_FILE += device/samsung/zero-common/manifest.xml
