@@ -226,8 +226,8 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.samsung
 
 # Livedisplay
-#PRODUCT_PACKAGES += \
-#    vendor.lineage.livedisplay@2.0-service.zero
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service.zero
 
 # Memory
 PRODUCT_PACKAGES += \
@@ -349,8 +349,8 @@ PRODUCT_COPY_FILES += \
 #
 # Touch
 #
-#PRODUCT_PACKAGES += \
-#	vendor.lineage.touch@1.0-service.samsung
+PRODUCT_PACKAGES += \
+	vendor.lineage.touch@1.0-service.samsung
 
 # Tools
 PRODUCT_PACKAGES += \
