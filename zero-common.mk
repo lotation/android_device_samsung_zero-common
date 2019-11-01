@@ -34,6 +34,11 @@ endif
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
+ifneq (,$(wildcard lineage-sdk/ ))
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    $(LOCAL_PATH)/overlay-lineage/lineage-sdk
+endif
+
 # This device is 640dpi.  However the platform doesn't
 # currently contain all of the bitmaps at 640dpi density so
 # we do this little trick to fall back to the xxhdpi version
