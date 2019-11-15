@@ -93,7 +93,7 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Camera
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_zero
+TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := //$(LOCAL_PATH):libcamera_parameters_zero
 
 
 # Camera-shims
@@ -154,7 +154,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/zero-common/releasetools
 BOARD_HDMI_INCAPABLE := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_sec
+TARGET_INIT_VENDOR_LIB := //$(LOCAL_PATH):libinit_sec
 TARGET_UNIFIED_DEVICE := true
 
 # Kernel
