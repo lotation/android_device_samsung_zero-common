@@ -92,6 +92,7 @@ namespace.sphal.search.paths += /system/${LIB}/vndk-sp${VNDK_VER}
 
 # Legacy devices do not have vndk-sp, so add /system/${LIB} to search path instead
 namespace.sphal.search.paths += /system/${LIB}
+namespace.sphal.search.paths += /system/${LIB}/hw
 
 namespace.sphal.permitted.paths += /odm/${LIB}/hw
 namespace.sphal.permitted.paths += /odm/${LIB}/egl
